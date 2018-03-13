@@ -1,4 +1,5 @@
 //Arthur Wirsching
+//Cheryl Huber
 package hangman;
 
 import javafx.beans.Observable;
