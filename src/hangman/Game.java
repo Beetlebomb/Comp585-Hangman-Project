@@ -1,3 +1,4 @@
+//Arthur Wirsching
 package hangman;
 
 import javafx.beans.Observable;
