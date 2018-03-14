@@ -40,7 +40,12 @@ public class GameController {
 	@FXML
 	private TextField textField ;
 
-    public void initialize() throws IOException {
+
+	public void resetHangman() {
+		System.out.println("Reset Hangman Visuals");
+	}
+
+	public void initialize() throws IOException {
 		System.out.println("in initialize");
 		drawHangman();
 		addTextBoxListener();
@@ -94,6 +99,7 @@ public class GameController {
 		
 	@FXML 
 	private void newHangman() {
+		board.getChildren().clear();
 		game.reset();
 	}
 

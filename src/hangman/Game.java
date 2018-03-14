@@ -1,4 +1,4 @@
-///Arthur Wirsching
+//Arthur Wirsching
 //Cheryl Huber
 package hangman;
 
@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.layout.VBox;
 
 public class Game {
 
@@ -119,7 +120,8 @@ public class Game {
 
 	private void setRandomWord() {
 		//int idx = (int) (Math.random() * words.length);
-		answer = "apple";//words[idx].trim(); // remove new line character
+		answer = "apple";
+		//words[idx].trim(); // remove new line character
 	}
 
 	private void prepTmpAnswer() {
@@ -168,10 +170,12 @@ public class Game {
 		gameState.setValue(!gameState.getValue());
 	}
 
-	public void reset() {}
+	public void reset() {
+		moves = 0;
+	}
 
 	private int numOfTries() {
-		return 5; // TODO, fix me
+		return 6; // TODO, fix me
 	}
 
 	public static void log(String s) {
