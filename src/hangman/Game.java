@@ -1,4 +1,4 @@
-//Arthur Wirsching
+///Arthur Wirsching
 //Cheryl Huber
 package hangman;
 
