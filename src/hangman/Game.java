@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Game {
 
+	private static Game instance;
 	private String answer;
 	private String tmpAnswer;
 	private String[] letterAndPosArray;
@@ -70,6 +71,7 @@ public class Game {
 		prepTmpAnswer();
 		prepLetterAndPosArray();
 		moves = 0;
+		instance=this;
 
 		gameState.setValue(false); // initial state
 		createGameStatusBinding();
@@ -189,5 +191,13 @@ public class Game {
 		else {
 			return null;
 		}
+	}
+
+	public static Game getInstance(){
+		return instance;
+	}
+
+	public int getTries(){
+		return moves;
 	}
 }
