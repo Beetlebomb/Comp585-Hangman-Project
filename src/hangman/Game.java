@@ -1,6 +1,7 @@
 //Peter Jones
 //Arthur Wirsching
 //Cheryl Huber
+//Peter Jones
 package hangman;
 
 import javafx.beans.Observable;
