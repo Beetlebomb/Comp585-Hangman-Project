@@ -9,6 +9,7 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 	
@@ -19,6 +20,9 @@
 				<MenuItem text="Quit" onAction="#quit"/>
 			</Menu>
 		</MenuBar>
+		<Text text="A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+			  GridPane.columnIndex="0" GridPane.rowIndex="50"
+			  GridPane.columnSpan="2"/>
 	</top>
 
 	<center>
