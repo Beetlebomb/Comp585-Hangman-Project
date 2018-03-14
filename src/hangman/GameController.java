@@ -57,6 +57,7 @@ public class GameController {
 				if(newValue.length() > 0) {
 					System.out.print(newValue);
 					game.makeMove(newValue);
+					drawHangman();
 					textField.clear();
 				}
 			}
@@ -83,6 +84,7 @@ public class GameController {
     	if(lastImage!=null)
 			board.getChildren().remove(lastImage);
     	int tries = Game.getInstance().getTries();
+    	System.out.println("Retrieving image from images/" + tries + ".png");
     	Image img = new Image("images/" + tries + ".png");
 		ImageView imgView = new ImageView(img);
 		lastImage = imgView;
