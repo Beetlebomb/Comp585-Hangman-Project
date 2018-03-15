@@ -1,3 +1,4 @@
+//Peter Jones
 //Arthur Wirsching
 //Cheryl Huber
 package hangman;
