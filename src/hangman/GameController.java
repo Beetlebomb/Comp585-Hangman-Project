@@ -10,6 +10,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -17,7 +19,8 @@ import javafx.scene.shape.Line;
 public class GameController {
 
 	private final ExecutorService executorService;
-	private final Game game;	
+	private final Game game;
+	private ImageView lastImage;
 	
 	public GameController(Game game) {
 		this.game = game;
@@ -59,6 +62,7 @@ public class GameController {
 				if(newValue.length() > 0) {
 					System.out.print(newValue);
 					game.makeMove(newValue);
+					drawHangman();
 					textField.clear();
 				}
 			}
@@ -82,7 +86,15 @@ public class GameController {
 	}
 
 	private void drawHangman() {
-
+    	if(lastImage!=null)
+			board.getChildren().remove(lastImage);
+    	int tries = Game.getInstance().getTries();
+    	System.out.println("Retrieving image from images/" + tries + ".png");
+    	Image img = new Image("images/" + tries + ".png");
+		ImageView imgView = new ImageView(img);
+		lastImage = imgView;
+		board.getChildren().add(imgView);
+		/*
 		Line line = new Line();
 		line.setStartX(25.0f);
 		line.setStartY(0.0f);
@@ -93,8 +105,7 @@ public class GameController {
 		c.setRadius(10);
 
 		board.getChildren().add(line);
-		board.getChildren().add(c);
-
+		board.getChildren().add(c);*/
 	}
 		
 	@FXML 
