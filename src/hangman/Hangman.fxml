@@ -20,9 +20,34 @@
 				<MenuItem text="Quit" onAction="#quit"/>
 			</Menu>
 		</MenuBar>
-		<Text text="A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
-			  GridPane.columnIndex="0" GridPane.rowIndex="50"
-			  GridPane.columnSpan="2"/>
+        <GridPane>
+            <Text text="A " GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="a"/>
+            <Text text="B " GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="b"/>
+            <Text text="C " GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="c"/>
+            <Text text="D " GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="d"/>
+            <Text text="E " GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="e"/>
+            <Text text="F " GridPane.columnIndex="5" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="f"/>
+            <Text text="G " GridPane.columnIndex="6" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="g"/>
+            <Text text="H " GridPane.columnIndex="7" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="h"/>
+            <Text text="I " GridPane.columnIndex="8" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="i"/>
+            <Text text="J " GridPane.columnIndex="9" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="j"/>
+            <Text text="K " GridPane.columnIndex="10" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="k"/>
+            <Text text="L " GridPane.columnIndex="11" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="l"/>
+            <Text text="M " GridPane.columnIndex="12" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="m"/>
+            <Text text="N " GridPane.columnIndex="13" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="n"/>
+            <Text text="O " GridPane.columnIndex="14" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="o"/>
+            <Text text="P " GridPane.columnIndex="15" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="p"/>
+            <Text text="Q " GridPane.columnIndex="16" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="q"/>
+            <Text text="R " GridPane.columnIndex="17" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="r"/>
+            <Text text="S " GridPane.columnIndex="18" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="s"/>
+            <Text text="T " GridPane.columnIndex="19" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="t"/>
+            <Text text="U " GridPane.columnIndex="20" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="u"/>
+            <Text text="V " GridPane.columnIndex="21" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="v"/>
+            <Text text="W " GridPane.columnIndex="22" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="w"/>
+            <Text text="X " GridPane.columnIndex="23" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="x"/>
+            <Text text="Y " GridPane.columnIndex="24" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="y"/>
+            <Text text="Z " GridPane.columnIndex="25" GridPane.rowIndex="0" GridPane.columnSpan="1" fx:id="z"/>
+        </GridPane>
 	</top>
 
 	<center>
