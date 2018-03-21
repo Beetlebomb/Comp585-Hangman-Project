@@ -1,11 +1,13 @@
 .root {
 	-fx-font-family: "Lucida Sans" ;
 	-fx-background-color: lightskyblue ;
+	-fx-background-image: url("../images/background.png");
 }
 .hangman-board {
 	-fx-background-color: lightskyblue ;
 	-fx-padding: 15px ;
 	-fx-alignment: center ;
+	-fx-background-image: url("../images/background.png");
 }
 
 .hangman-board > .board-grid {
