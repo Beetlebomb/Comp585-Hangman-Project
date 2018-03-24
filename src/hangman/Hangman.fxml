@@ -31,6 +31,7 @@
 				<styleClass>
 					<String fx:value="ltr-board"/>
 				</styleClass>
+
 			</HBox>
 			<HBox spacing="5" alignment="CENTER" fx:id="ltrBoard2">
 				<styleClass>

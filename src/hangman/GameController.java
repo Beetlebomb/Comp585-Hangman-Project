@@ -1,5 +1,6 @@
 package hangman;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -8,16 +9,23 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+//import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
-public class GameController {
+
+public class GameController  {
 
 	private final ExecutorService executorService;
 	private final Game game;
@@ -34,6 +42,7 @@ public class GameController {
 				return thread;
 			}
 		});
+
 	}
 
 	@FXML
@@ -65,8 +74,30 @@ public class GameController {
 		setUpStatusLabelBindings();
 	}
 	private void initLtrs(){
-		for(int i=0;i<NUMLTRS;i++){
+		int i;
+		for(i=0;i<NUMLTRS;i++){
 			lblLtrs[i]=new Label(Character.toString(ltrs[i]));
+			lblLtrs[i].setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent e) {
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					Label l = new Label();
+					l = (Label) e.getSource();
+					String s = l.textFillProperty().get().toString();
+					System.out.println(s);
+					if (l.textFillProperty().get().toString().equals("0xff0000ff")){
+						alert.setTitle("Duplicate Letter Dialog");
+						alert.setHeaderText("Pay Attention!");
+						alert.setContentText("You have already tried that letter, please try again");
+						alert.showAndWait();
+					}else {
+						l.setTextFill(Color.color(1.0, 0, 0));
+						game.makeMove(l.getText());
+						drawHangman();
+					}
+
+				}
+			});
 			if(i<(NUMLTRS/2)) {
 				ltrBoard.getChildren().add(lblLtrs[i]);
 			}
@@ -82,6 +113,11 @@ public class GameController {
 			public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
 				if(newValue.length() > 0) {
 					System.out.print(newValue);
+					char c = newValue.charAt(0);
+					if (c > 91){
+						c = Character.toUpperCase(c);
+					}
+					if (c >= 65 && c<=90){lblLtrs[c-65].setTextFill(Color.color(1.0, 0, 0));}
 					game.makeMove(newValue);
 					drawHangman();
 					textField.clear();
@@ -107,7 +143,7 @@ public class GameController {
 	}
 
 	private void drawHangman() {
-		ltrBoard.getChildren().addAll();
+		//ltrBoard.getChildren().addAll();
 		//board.getChildren().add(ltrBoard);
 		//board.getChildren().add(ltrBoard2);
     	if(lastImage!=null)
@@ -145,4 +181,33 @@ public class GameController {
 		board.getScene().getWindow().hide();
 	}
 
+	@FXML
+	private void ltrClicked(){
+
+	}
+
+//	public class LtrListener implements MouseListener {
+//
+//		/* Empty method definition. */
+//		public void mousePressed(MouseEvent e) {
+//		}
+//
+//		/* Empty method definition. */
+//		public void mouseReleased(MouseEvent e) {
+//		}
+//
+//		/* Empty method definition. */
+//		public void mouseEntered(MouseEvent e) {
+//		}
+//
+//		/* Empty method definition. */
+//		public void mouseExited(MouseEvent e) {
+//		}
+//
+//		public void mouseClicked(MouseEvent e) {
+//        //Event listener implementation goes here...
+//		}
+//	}
+
 }
+
