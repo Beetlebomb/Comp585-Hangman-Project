@@ -96,7 +96,7 @@ public class Game {
 					return check;
 				}
 
-				if(tmpAnswer.trim().length() == 0 && index == 1){
+				if(tmpAnswer.trim().length() == 0 && index != -1){
 					log("new game");
 					return GameStatus.OPEN;
 				}
