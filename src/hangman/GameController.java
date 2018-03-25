@@ -94,28 +94,6 @@ public class GameController {
 		ImageView imgView = new ImageView(img);
 		lastImage = imgView;
 		board.getChildren().add(imgView);
-		/*
-		Line line = new Line();
-		line.setStartX(25.0f);
-		line.setStartY(0.0f);
-		line.setEndX(25.0f);
-		line.setEndY(25.0f);*/
-
-		Circle head = new Circle();
-		head.setRadius(10);
-		Line body = new Line();
-		body.setStartX(22.0f);
-		body.setStartY(25.0f);
-		body.setEndX(22.0f);
-		body.setEndY(75.0f);
-		/*Line leftArm = new Line();
-		leftArm.setStartX(22.0f);
-		leftArm.setStartY(25.0f);
-		leftArm.setEndX(0.0f);
-		leftArm.setEndY(0.0f);*/
-
-		board.getChildren().add(line);
-		board.getChildren().add(c);*/
 	}
 		
 	@FXML 
