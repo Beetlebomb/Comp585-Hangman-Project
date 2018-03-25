@@ -145,7 +145,7 @@ public class Game {
 	private int getValidIndex(String input) {
 		int index = -1;
 		for(int i = 0; i < letterAndPosArray.length; i++) {
-			if(letterAndPosArray[i].equals(input)) {
+			if(letterAndPosArray[i].equalsIgnoreCase(input)) {
 				index = i;
 				letterAndPosArray[i] = "";
 				break;
@@ -187,7 +187,7 @@ public class Game {
 
 	private GameStatus checkForWinner(int status) {
 		log("in checkForWinner");
-		if(tmpAnswer.equals(answer)) {
+		if(tmpAnswer.equalsIgnoreCase(answer)) {
 			log("won");
 			return GameStatus.WON;
 		}
