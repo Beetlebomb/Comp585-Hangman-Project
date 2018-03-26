@@ -178,7 +178,7 @@ public class Game {
 	}
 
 	private int numOfTries() {
-		return 6; // TODO, fix me
+		return 5; // TODO, fix me
 	}
 
 	public static void log(String s) {
@@ -193,6 +193,7 @@ public class Game {
 		}
 		else if(moves == numOfTries()) {
 			log("game over");
+			moves=6;
 			return GameStatus.GAME_OVER;
 		}
 		else {
