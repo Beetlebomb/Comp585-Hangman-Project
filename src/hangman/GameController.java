@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -108,7 +109,8 @@ public class GameController  {
 		}
 	}
 	private void addTextBoxListener() {
-		textField.textProperty().addListener(new ChangeListener<String>() {
+		textField.setEditable(false);
+		/*textField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
 				if(newValue.length() > 0) {
@@ -120,8 +122,22 @@ public class GameController  {
 					if (c >= 65 && c<=90){lblLtrs[c-65].setTextFill(Color.color(1.0, 0, 0));}
 					game.makeMove(newValue);
 					drawHangman();
-					textField.clear();
+					//textField.clear();
 				}
+			}
+		});*/
+		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+					char c = event.getCode().toString().charAt(0);
+					if (c > 91) {
+						c = Character.toUpperCase(c);
+					}
+					if (c >= 65 && c <= 90) {
+						lblLtrs[c - 65].setTextFill(Color.color(1.0, 0, 0));
+					}
+				game.makeMove(c+"");
+				drawHangman();
 			}
 		});
 	}
@@ -142,13 +158,36 @@ public class GameController  {
 		*/
 	}
 
+	/**
+	 * Formats the textbox to have underscores for missing letters, but displays letters that are correctly guessed
+	 */
+	private void updateTextBox(){
+		String tmpWord = game.getTempAnswer().toString();
+		String toTextBox = "";
+		StringBuilder sb = new StringBuilder(tmpWord);
+
+		//if a letter is blank in the temp answer make it an underscore. Goes for as long as the word length
+		for (int i = 0; i<tmpWord.length();i++){
+			if(sb.charAt(i) == ' ')
+				sb.setCharAt(i, '_');
+		}
+		toTextBox = sb.toString();
+		System.out.println("Built String is: "+toTextBox);
+		textField.setText(toTextBox);
+	}
+
+	/**
+	 * retrieves an image of the hangman, loading in a different one based on the number of remaining tries
+	 */
 	private void drawHangman() {
 		//ltrBoard.getChildren().addAll();
 		//board.getChildren().add(ltrBoard);
 		//board.getChildren().add(ltrBoard2);
+
+		updateTextBox();
     	if(lastImage!=null)
 			board.getChildren().remove(lastImage);
-    	int tries = Game.getInstance().getTries();
+    	int tries = game.getTries();
     	System.out.println("Retrieving image from images/" + tries + ".png");
     	Image img = new Image("images/" + tries + ".png");
 		ImageView imgView = new ImageView(img);
