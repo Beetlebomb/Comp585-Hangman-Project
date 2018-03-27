@@ -137,32 +137,35 @@ public class GameController  {
 		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				//if not a letter then return
-				if(!event.getCode().isLetterKey())
-					return;
-
-				char c = event.getCode().toString().charAt(0);
-
-				//make the characters upper case so its easier to work with
-				if (c > 91)
-					c = Character.toUpperCase(c);
-
-				//test to see if the character has already been guessed
-				for(char ch:guessedLetters) {
-					if(ch==c){
-						//duplicate found, display error and return
-						displayDuplicateInputError();
+				//if not in game over state, else do nothing
+				if(game.getGameStatus() != Game.GameStatus.GAME_OVER) {
+					//if not a letter then return
+					if (!event.getCode().isLetterKey())
 						return;
-					}
-				}
 
-				//color on of the letters on the screen
-				if (c >= 65 && c <= 90) {
-					lblLtrs[c - 65].setTextFill(Color.color(1.0, 0, 0));
+					char c = event.getCode().toString().charAt(0);
+
+					//make the characters upper case so its easier to work with
+					if (c > 91)
+						c = Character.toUpperCase(c);
+
+					//test to see if the character has already been guessed
+					for (char ch : guessedLetters) {
+						if (ch == c) {
+							//duplicate found, display error and return
+							displayDuplicateInputError();
+							return;
+						}
+					}
+
+					//color on of the letters on the screen
+					if (c >= 65 && c <= 90) {
+						lblLtrs[c - 65].setTextFill(Color.color(1.0, 0, 0));
+					}
+					guessedLetters.add(c);
+					game.makeMove(c + "");
+					drawHangman();
 				}
-				guessedLetters.add(c);
-				game.makeMove(c+"");
-				drawHangman();
 			}
 		});
 	}
@@ -223,6 +226,7 @@ public class GameController  {
 	@FXML 
 	private void newHangman() {
 		System.out.println("IT RESET");
+		guessedLetters = new ArrayList<Character>();
 		ltrBoard.getChildren().clear();
 		ltrBoard2.getChildren().clear();
 		initLtrs();
