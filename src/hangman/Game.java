@@ -41,7 +41,7 @@ public class Game {
 		GAME_OVER {
 			@Override
 			public String toString() {
-				return "Game over!";
+				return "Game over! The word was "+Game.instance.getAnswer().toLowerCase() + ".";
 			}
 		},
 		BAD_GUESS {
@@ -196,6 +196,7 @@ public class Game {
 		Deque<Integer> indexes = getValidIndexes(input);
 		StringBuilder sb = new StringBuilder(tmpAnswer);
 
+		//if the stack is empty then so letter was found, return -1. Else return 1 and build the string
 		if(!indexes.isEmpty()) {
 			index = 1;
 			while (!indexes.isEmpty())
@@ -258,5 +259,13 @@ public class Game {
 	 */
 	public String getTempAnswer(){
 		return tmpAnswer;
+	}
+
+	/**
+	 * Gets the answer of the game
+	 * @return String
+	 */
+	public String getAnswer(){
+		return answer;
 	}
 }

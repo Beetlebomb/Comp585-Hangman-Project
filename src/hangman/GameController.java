@@ -2,6 +2,7 @@ package hangman;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -32,9 +33,11 @@ public class GameController  {
 	private final Game game;
 	private final int NUMLTRS = 26;
 	private ImageView lastImage;
+	private ArrayList<Character> guessedLetters;
 	
 	public GameController(Game game) {
 		this.game = game;
+		guessedLetters = new ArrayList<Character>();
 		executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
 			@Override
 			public Thread newThread(Runnable r) {
@@ -78,16 +81,12 @@ public class GameController  {
 			lblLtrs[i].setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent e) {
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
 					Label l = new Label();
 					l = (Label) e.getSource();
 					String s = l.textFillProperty().get().toString();
 					System.out.println(s);
 					if (l.textFillProperty().get().toString().equals("0xff0000ff")){
-						alert.setTitle("Duplicate Letter Dialog");
-						alert.setHeaderText("Pay Attention!");
-						alert.setContentText("You have already tried that letter, please try again");
-						alert.showAndWait();
+						displayDuplicateInputError();
 					}else {
 						l.setTextFill(Color.color(1.0, 0, 0));
 						game.makeMove(l.getText());
@@ -105,6 +104,16 @@ public class GameController  {
 			//lblLtrs[i].setText(Character.toString(ltrs[i]));
 		}
 	}
+
+	private void displayDuplicateInputError(){
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Duplicate Letter Dialog");
+		alert.setHeaderText("Pay Attention!");
+		alert.setContentText("You have already tried that letter, please try again");
+		alert.showAndWait();
+	}
+
+
 	private void addTextBoxListener() {
 		textField.setEditable(false);
 		/*textField.textProperty().addListener(new ChangeListener<String>() {
@@ -123,16 +132,35 @@ public class GameController  {
 				}
 			}
 		});*/
+
+		//adds a listener that tests the user input to see if its valid
 		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-					char c = event.getCode().toString().charAt(0);
-					if (c > 91) {
-						c = Character.toUpperCase(c);
+				//if not a letter then return
+				if(!event.getCode().isLetterKey())
+					return;
+
+				char c = event.getCode().toString().charAt(0);
+
+				//make the characters upper case so its easier to work with
+				if (c > 91)
+					c = Character.toUpperCase(c);
+
+				//test to see if the character has already been guessed
+				for(char ch:guessedLetters) {
+					if(ch==c){
+						//duplicate found, display error and return
+						displayDuplicateInputError();
+						return;
 					}
-					if (c >= 65 && c <= 90) {
-						lblLtrs[c - 65].setTextFill(Color.color(1.0, 0, 0));
-					}
+				}
+
+				//color on of the letters on the screen
+				if (c >= 65 && c <= 90) {
+					lblLtrs[c - 65].setTextFill(Color.color(1.0, 0, 0));
+				}
+				guessedLetters.add(c);
 				game.makeMove(c+"");
 				drawHangman();
 			}
@@ -169,7 +197,7 @@ public class GameController  {
 				sb.setCharAt(i, '_');
 		}
 		toTextBox = sb.toString();
-		System.out.println("Built String is: "+toTextBox);
+		//System.out.println("Built String is: "+toTextBox); debug
 		textField.setText(toTextBox);
 	}
 
