@@ -176,6 +176,9 @@ public class Game {
 
 	public void reset() {
 		moves = 0;
+		setRandomWord();
+		prepTmpAnswer();
+		prepLetterAndPosArray();
 	}
 
 	private int numOfTries() {
