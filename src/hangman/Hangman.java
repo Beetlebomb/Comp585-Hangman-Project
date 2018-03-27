@@ -17,6 +17,7 @@ public class Hangman extends Application {
 		Parent root = loader.load();
 		Scene scene = new Scene(root, 500, 800);
 		scene.getStylesheets().add(getClass().getResource("Hangman.css").toExternalForm());
+		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Indie+Flower");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

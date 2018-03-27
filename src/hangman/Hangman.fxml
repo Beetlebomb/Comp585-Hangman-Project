@@ -5,10 +5,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 	
@@ -19,10 +21,23 @@
 				<MenuItem text="Quit" onAction="#quit"/>
 			</Menu>
 		</MenuBar>
+
 	</top>
 
 	<center>
+
 		<VBox fx:id="board">
+			<HBox spacing="7" alignment="CENTER" fx:id="ltrBoard">
+				<styleClass>
+					<String fx:value="ltr-board"/>
+				</styleClass>
+
+			</HBox>
+			<HBox spacing="5" alignment="CENTER" fx:id="ltrBoard2">
+				<styleClass>
+					<String fx:value="ltr-board"/>
+				</styleClass>
+			</HBox>
 			<styleClass>
 				<String fx:value="hangman-board"/>
 			</styleClass>
@@ -42,7 +57,7 @@
 						<String fx:value="status"/>
 					</styleClass>
 				</Label>
-				<TextField fx:id="textField" GridPane.columnIndex="1">
+				<TextField fx:id="textField" GridPane.columnIndex="1" opacity="1">
 				</TextField>
 			</GridPane>
 		</VBox>
