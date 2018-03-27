@@ -63,9 +63,6 @@ public class GameController  {
 	private char ltrs[] = new char [] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 										'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
-	public void resetHangman() {
-		System.out.println("Reset Hangman Visuals");
-	}
 
 	public void initialize() throws IOException {
 		System.out.println("in initialize");
@@ -197,10 +194,14 @@ public class GameController  {
 		
 	@FXML 
 	private void newHangman() {
+		System.out.println("IT RESET");
 		ltrBoard.getChildren().clear();
 		ltrBoard2.getChildren().clear();
-		board.getChildren().clear();
+		initLtrs();
+		addTextBoxListener();
+		setUpStatusLabelBindings();
 		game.reset();
+		drawHangman();
 	}
 
 	@FXML
