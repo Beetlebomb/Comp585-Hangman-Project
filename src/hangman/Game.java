@@ -33,6 +33,7 @@ public class Game {
 	private final String fileName = "src/resources/dictionary.txt";
 	private final ReadOnlyObjectWrapper<GameStatus> gameStatus;
 	private ObjectProperty<Boolean> gameState = new ReadOnlyObjectWrapper<Boolean>();
+	private boolean reset=true;
 
 	/**
 	 * Returns string based on selected enum
@@ -112,7 +113,8 @@ public class Game {
 					return check;
 				}
 
-				if(tmpAnswer.trim().length() == 0 && index != -1){
+				if(tmpAnswer.trim().length() == 0 && index != -1 || reset==true){
+					reset=false;
 					log("new game");
 					return GameStatus.OPEN;
 				}
@@ -219,6 +221,9 @@ public class Game {
 		setRandomWord();
 		prepTmpAnswer();
 		prepLetterAndPosArray();
+		reset=true;
+		gameState.setValue(!gameState.getValue());
+
 	}
 
 	private int numOfTries() {
