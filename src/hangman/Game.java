@@ -1,7 +1,7 @@
 //Peter Jones
 //Arthur Wirsching
 //Cheryl Huber
-//Peter Jones
+//Ivan Suarez
 package hangman;
 
 import javafx.beans.Observable;
@@ -12,9 +12,14 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import javafx.scene.layout.VBox;
 
 public class Game {
 
@@ -22,12 +27,16 @@ public class Game {
 	private String answer;
 	private String tmpAnswer;
 	private String[] letterAndPosArray;
-	private String[] words;
+	private ArrayList<String> words;
 	private int moves;
 	private int index;
+	private final String fileName = "src/resources/dictionary.txt";
 	private final ReadOnlyObjectWrapper<GameStatus> gameStatus;
 	private ObjectProperty<Boolean> gameState = new ReadOnlyObjectWrapper<Boolean>();
 
+	/**
+	 * Returns string based on selected enum
+	 */
 	public enum GameStatus {
 		GAME_OVER {
 			@Override
@@ -59,6 +68,9 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Constructor. Sets game status, adds keylistener, sets all initial game values
+	 */
 	public Game() {
 		gameStatus = new ReadOnlyObjectWrapper<GameStatus>(this, "gameStatus", GameStatus.OPEN);
 		gameStatus.addListener(new ChangeListener<GameStatus>() {
@@ -78,10 +90,14 @@ public class Game {
 		moves = 0;
 		instance=this;
 
+
 		gameState.setValue(false); // initial state
 		createGameStatusBinding();
 	}
 
+	/**
+	 * create binding that returns game state
+	 */
 	private void createGameStatusBinding() {
 		List<Observable> allObservableThings = new ArrayList<>();
 		ObjectBinding<GameStatus> gameStatusBinding = new ObjectBinding<GameStatus>() {
@@ -122,10 +138,30 @@ public class Game {
 		return gameStatus.get();
 	}
 
+	/**
+	 * selects a word from an external file. If something goes wrong the word "apple" is defaulted to
+	 */
 	private void setRandomWord() {
-		//int idx = (int) (Math.random() * words.length);
-		answer = "apple";
-		//words[idx].trim(); // remove new line character
+		words = new ArrayList<String>();
+		String line;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+
+			//add a string to the list
+			while ((line = br.readLine()) != null) {
+				line.trim(); // remove new line character
+				words.add(line);
+			}
+			int idx = (int) (Math.random() * words.size());
+			answer = words.get(idx);
+			System.out.println("The word is: " + answer);
+		}catch (FileNotFoundException e) {
+			answer = "apple";
+			System.out.println("Error. File not found. " + e.getMessage());
+		}catch (IOException e){
+			answer = "apple";
+			System.out.println("IO Exception. " + e.getMessage());
+		}
 	}
 
 	private void prepTmpAnswer() {
@@ -143,29 +179,32 @@ public class Game {
 		}
 	}
 
-	private int getValidIndex(String input) {
-		int index = -1;
+	private Deque<Integer> getValidIndexes(String input) {
+		Deque<Integer> indexes = new ArrayDeque<Integer>();
+
 		for(int i = 0; i < letterAndPosArray.length; i++) {
 			if(letterAndPosArray[i].equalsIgnoreCase(input)) {
-				index = i;
+				indexes.push(i);
 				letterAndPosArray[i] = "";
-				break;
 			}
 		}
-		return index;
+		return indexes;
 	}
 
 	private int update(String input) {
-		int index = getValidIndex(input);
-		if(index != -1) {
-			StringBuilder sb = new StringBuilder(tmpAnswer);
-			sb.setCharAt(index, input.charAt(0));
-			tmpAnswer = sb.toString();
+		int index = -1;
+		Deque<Integer> indexes = getValidIndexes(input);
+		StringBuilder sb = new StringBuilder(tmpAnswer);
+
+		if(!indexes.isEmpty()) {
+			index = 1;
+			while (!indexes.isEmpty())
+				sb.setCharAt(indexes.pop(), input.charAt(0));
 		}
+		tmpAnswer = sb.toString();
+
 		return index;
 	}
-
-	private static void drawHangmanFrame() {}
 
 	public void makeMove(String letter) {
 		log("\nin makeMove: " + letter);
@@ -201,11 +240,19 @@ public class Game {
 		}
 	}
 
-	public static Game getInstance(){
-		return instance;
-	}
-
+	/**
+	 * Gets number of tries attempted
+	 * @return int
+	 */
 	public int getTries(){
 		return moves;
+	}
+
+	/**
+	 * Gets the answer that the user is working on
+	 * @return String
+	 */
+	public String getTempAnswer(){
+		return tmpAnswer;
 	}
 }
