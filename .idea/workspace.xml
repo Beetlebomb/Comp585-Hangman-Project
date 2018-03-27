@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5bac875-78f1-4a10-9437-87197b09f132" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hangman/GameController.java" afterPath="$PROJECT_DIR$/src/hangman/GameController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hangman/Hangman.fxml" afterPath="$PROJECT_DIR$/src/hangman/Hangman.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,7 +27,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hangman/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
@@ -36,6 +36,19 @@
                 <element signature="imports" expanded="true" />
                 <marker date="1522188231107" expanded="true" signature="6786:6792" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hangman.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hangman/Hangman.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="59" column="80" lean-forward="false" selection-start-line="59" selection-start-column="80" selection-end-line="59" selection-end-column="80" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -152,9 +165,9 @@
         <option value="$PROJECT_DIR$/src/hangman/Hangman.java" />
         <option value="$PROJECT_DIR$/src/hangman/Hangman.css" />
         <option value="$PROJECT_DIR$/src/hangman/LtrListener.java" />
-        <option value="$PROJECT_DIR$/src/hangman/Hangman.fxml" />
         <option value="$PROJECT_DIR$/src/hangman/Game.java" />
         <option value="$PROJECT_DIR$/src/hangman/GameController.java" />
+        <option value="$PROJECT_DIR$/src/hangman/Hangman.fxml" />
       </list>
     </option>
   </component>
@@ -548,7 +561,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -863,17 +876,6 @@
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/javafx-src.zip!/javafx/beans/property/StringPropertyBase.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/javafx-src.zip!/javafx/beans/binding/StringExpression.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/Labeled.java" />
-    <entry file="file://$PROJECT_DIR$/src/hangman/Hangman.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hangman/Hangman.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -937,6 +939,17 @@
             <element signature="imports" expanded="true" />
             <marker date="1522188231107" expanded="true" signature="6786:6792" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hangman/Hangman.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="59" column="80" lean-forward="false" selection-start-line="59" selection-start-column="80" selection-end-line="59" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>
