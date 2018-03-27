@@ -268,4 +268,7 @@ public class Game {
 	public String getAnswer(){
 		return answer;
 	}
+	public GameStatus getStatus(){
+		return gameStatus.get();
+	}
 }
