@@ -228,6 +228,7 @@ public class GameController  {
 		initLtrs();
 		addTextBoxListener();
 		setUpStatusLabelBindings();
+		guessedLetters.clear();
 		game.reset();
 		drawHangman();
 	}
