@@ -226,6 +226,7 @@ public class GameController  {
 	@FXML 
 	private void newHangman() {
 		System.out.println("IT RESET");
+		guessedLetters = new ArrayList<Character>();
 		ltrBoard.getChildren().clear();
 		ltrBoard2.getChildren().clear();
 		initLtrs();
