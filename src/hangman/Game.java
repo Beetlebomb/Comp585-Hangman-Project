@@ -158,10 +158,10 @@ public class Game {
 			answer = words.get(idx);
 			System.out.println("The word is: " + answer);
 		}catch (FileNotFoundException e) {
-			answer = "apple";
+			answer = "apple"; //defaults to apple if file not found
 			System.out.println("Error. File not found. " + e.getMessage());
 		}catch (IOException e){
-			answer = "apple";
+			answer = "apple"; //defaults to apple if there's an exception
 			System.out.println("IO Exception. " + e.getMessage());
 		}
 	}
