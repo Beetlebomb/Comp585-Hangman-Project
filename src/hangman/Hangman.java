@@ -15,7 +15,7 @@ public class Hangman extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Hangman.fxml"));
 		loader.setController(new GameController(game));
 		Parent root = loader.load();
-		Scene scene = new Scene(root, 500, 720);
+		Scene scene = new Scene(root, 500, 700);
 		scene.getStylesheets().add(getClass().getResource("Hangman.css").toExternalForm());
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Indie+Flower");
 		primaryStage.setResizable(false);

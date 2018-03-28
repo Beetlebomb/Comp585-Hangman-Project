@@ -176,7 +176,7 @@ public class GameController  {
 
 		System.out.println("in setUpStatusLabelBindings");
 		statusLabel.textProperty().bind(Bindings.format("%s", game.gameStatusProperty()));
-		enterALetterLabel.textProperty().bind(Bindings.format("%s", "Enter a letter"));
+		enterALetterLabel.textProperty().bind(Bindings.format("%s", "Enter or Click a letter"));
 		/*	Bindings.when(
 					game.currentPlayerProperty().isNotNull()
 			).then(
