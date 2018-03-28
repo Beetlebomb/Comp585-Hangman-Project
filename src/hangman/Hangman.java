@@ -1,3 +1,8 @@
+//Peter Jones
+//Arthur Wirsching
+//Cheryl Huber
+//Ivan Suarez
+
 package hangman;
 
 import java.io.IOException;

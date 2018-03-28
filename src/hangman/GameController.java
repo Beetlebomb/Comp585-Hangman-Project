@@ -1,14 +1,18 @@
+//Peter Jones
+//Arthur Wirsching
+//Cheryl Huber
+//Ivan Suarez
+
+//Note: Professor, please read the readme.txt included before reading the source code. Thank you!
+
 package hangman;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -19,10 +23,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-//import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -75,7 +75,7 @@ public class GameController  {
 		addTextBoxListener();
 		setUpStatusLabelBindings();
 	}
-	private void initLtrs(){
+	private void initLtrs(){ //populates the letters at the top of the frame
 		int i;
 		for(i=0;i<NUMLTRS;i++){
 			lblLtrs[i]=new Label(Character.toString(ltrs[i]));
@@ -103,11 +103,10 @@ public class GameController  {
 			else{
 				ltrBoard2.getChildren().add(lblLtrs[i]);
 			}
-			//lblLtrs[i].setText(Character.toString(ltrs[i]));
 		}
 	}
 
-	private void displayDuplicateInputError(){
+	private void displayDuplicateInputError(){ //creates the pop up dialog for when the same letter is guessed again.
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Duplicate Letter Dialog");
 		alert.setHeaderText("Pay Attention!");
@@ -118,22 +117,6 @@ public class GameController  {
 
 	private void addTextBoxListener() {
 		textField.setEditable(false);
-		/*textField.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-				if(newValue.length() > 0) {
-					System.out.print(newValue);
-					char c = newValue.charAt(0);
-					if (c > 91){
-						c = Character.toUpperCase(c);
-					}
-					if (c >= 65 && c<=90){lblLtrs[c-65].setTextFill(Color.color(1.0, 0, 0));}
-					game.makeMove(newValue);
-					drawHangman();
-					//textField.clear();
-				}
-			}
-		});*/
 
 		//adds a listener that tests the user input to see if its valid
 		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -177,15 +160,6 @@ public class GameController  {
 		System.out.println("in setUpStatusLabelBindings");
 		statusLabel.textProperty().bind(Bindings.format("%s", game.gameStatusProperty()));
 		enterALetterLabel.textProperty().bind(Bindings.format("%s", "Enter or Click a letter"));
-		/*	Bindings.when(
-					game.currentPlayerProperty().isNotNull()
-			).then(
-				Bindings.format("To play: %s", game.currentPlayerProperty())
-			).otherwise(
-				""
-			)
-		);
-		*/
 	}
 
 	/**
@@ -202,7 +176,6 @@ public class GameController  {
 				sb.setCharAt(i, '_');
 		}
 		toTextBox = sb.toString();
-		//System.out.println("Built String is: "+toTextBox); debug
 		textField.setText(toTextBox);
 		lblWord.setText(toTextBox);
 	}
@@ -211,10 +184,6 @@ public class GameController  {
 	 * retrieves an image of the hangman, loading in a different one based on the number of remaining tries
 	 */
 	private void drawHangman() {
-		//ltrBoard.getChildren().addAll();
-		//board.getChildren().add(ltrBoard);
-		//board.getChildren().add(ltrBoard2);
-
 		updateTextBox();
     	if(lastImage!=null)
 			board.getChildren().remove(lastImage);
@@ -227,7 +196,7 @@ public class GameController  {
 	}
 		
 	@FXML 
-	private void newHangman() {
+	private void newHangman() { //resets the game and calls the reset function in the game object as well
 		System.out.println("IT RESET");
 		guessedLetters = new ArrayList<Character>();
 		ltrBoard.getChildren().clear();
@@ -249,29 +218,6 @@ public class GameController  {
 	private void ltrClicked(){
 
 	}
-
-//	public class LtrListener implements MouseListener {
-//
-//		/* Empty method definition. */
-//		public void mousePressed(MouseEvent e) {
-//		}
-//
-//		/* Empty method definition. */
-//		public void mouseReleased(MouseEvent e) {
-//		}
-//
-//		/* Empty method definition. */
-//		public void mouseEntered(MouseEvent e) {
-//		}
-//
-//		/* Empty method definition. */
-//		public void mouseExited(MouseEvent e) {
-//		}
-//
-//		public void mouseClicked(MouseEvent e) {
-//        //Event listener implementation goes here...
-//		}
-//	}
 
 }
 

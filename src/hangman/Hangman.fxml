@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Peter Jones
+	Arthur Wirsching
+	Cheryl Huber
+	Ivan Suarez -->
+
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>

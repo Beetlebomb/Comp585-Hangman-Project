@@ -2,6 +2,8 @@
 //Arthur Wirsching
 //Cheryl Huber
 //Ivan Suarez
+
+//Note: Professor, please read the readme.txt included before reading the source code. Thank you!
 package hangman;
 
 import javafx.beans.Observable;
@@ -80,7 +82,6 @@ public class Game {
 								GameStatus oldValue, GameStatus newValue) {
 				if (gameStatus.get() != GameStatus.OPEN) {
 					log("in Game: in changed");
-					//currentPlayer.set(null);
 				}
 			}
 
@@ -126,7 +127,6 @@ public class Game {
 					moves++;
 					log("bad guess");
 					return GameStatus.BAD_GUESS;
-					//printHangman();
 				}
 			}
 		};
@@ -166,7 +166,7 @@ public class Game {
 		}
 	}
 
-	private void prepTmpAnswer() {
+	private void prepTmpAnswer() { //prepares the chosen word from the dictionary
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < answer.length(); i++) {
 			sb.append(" ");
@@ -174,14 +174,14 @@ public class Game {
 		tmpAnswer = sb.toString();
 	}
 
-	private void prepLetterAndPosArray() {
+	private void prepLetterAndPosArray() { //initializes the letters and positions they have in the array
 		letterAndPosArray = new String[answer.length()];
 		for(int i = 0; i < answer.length(); i++) {
 			letterAndPosArray[i] = answer.substring(i,i+1);
 		}
 	}
 
-	private Deque<Integer> getValidIndexes(String input) {
+	private Deque<Integer> getValidIndexes(String input) { //index management
 		Deque<Integer> indexes = new ArrayDeque<Integer>();
 
 		for(int i = 0; i < letterAndPosArray.length; i++) {
@@ -216,7 +216,7 @@ public class Game {
 		gameState.setValue(!gameState.getValue());
 	}
 
-	public void reset() {
+	public void reset() { //part of the restart game process
 		moves = 0;
 		setRandomWord();
 		prepTmpAnswer();
