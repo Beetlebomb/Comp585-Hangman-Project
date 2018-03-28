@@ -65,7 +65,8 @@ public class GameController  {
 	private Label lblLtrs[] = new Label[NUMLTRS];
 	private char ltrs[] = new char [] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 										'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-
+	@FXML
+	private Label lblWord = new Label();
 
 	public void initialize() throws IOException {
 		System.out.println("in initialize");
@@ -81,18 +82,19 @@ public class GameController  {
 			lblLtrs[i].setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent e) {
-					Label l = new Label();
-					l = (Label) e.getSource();
-					String s = l.textFillProperty().get().toString();
-					System.out.println(s);
-					if (l.textFillProperty().get().toString().equals("0xff0000ff")){
-						displayDuplicateInputError();
-					}else {
-						l.setTextFill(Color.color(1.0, 0, 0));
-						game.makeMove(l.getText());
-						drawHangman();
+					if(game.getGameStatus() != Game.GameStatus.GAME_OVER && game.getGameStatus() != Game.GameStatus.WON) {
+						Label l = new Label();
+						l = (Label) e.getSource();
+						String s = l.textFillProperty().get().toString();
+						System.out.println(s);
+						if (l.textFillProperty().get().toString().equals("0xff0000ff")) {
+							displayDuplicateInputError();
+						} else {
+							l.setTextFill(Color.color(1.0, 0, 0));
+							game.makeMove(l.getText());
+							drawHangman();
+						}
 					}
-
 				}
 			});
 			if(i<(NUMLTRS/2)) {
@@ -137,8 +139,8 @@ public class GameController  {
 		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				//if not in game over state, else do nothing
-				if(game.getGameStatus() != Game.GameStatus.GAME_OVER) {
+				//if not in game over state and not won, else do nothing
+				if(game.getGameStatus() != Game.GameStatus.GAME_OVER && game.getGameStatus() != Game.GameStatus.WON) {
 					//if not a letter then return
 					if (!event.getCode().isLetterKey())
 						return;
@@ -174,7 +176,7 @@ public class GameController  {
 
 		System.out.println("in setUpStatusLabelBindings");
 		statusLabel.textProperty().bind(Bindings.format("%s", game.gameStatusProperty()));
-		enterALetterLabel.textProperty().bind(Bindings.format("%s", "Enter a letter:"));
+		enterALetterLabel.textProperty().bind(Bindings.format("%s", "Enter or Click a letter"));
 		/*	Bindings.when(
 					game.currentPlayerProperty().isNotNull()
 			).then(
@@ -202,6 +204,7 @@ public class GameController  {
 		toTextBox = sb.toString();
 		//System.out.println("Built String is: "+toTextBox); debug
 		textField.setText(toTextBox);
+		lblWord.setText(toTextBox);
 	}
 
 	/**
