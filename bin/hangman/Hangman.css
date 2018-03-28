@@ -2,10 +2,12 @@
 	-fx-font-family: "Lucida Sans" ;
 	-fx-background-color: lightskyblue ;
 	-fx-background-image: url("../images/background.png");
+
 }
 .ltr-board > .label{
 	-fx-font: 30px "Indie Flower";
 	-fx-stroke: navy;
+
 
 }
 
@@ -14,6 +16,7 @@
 	-fx-padding: 15px ;
 	-fx-alignment: center ;
 	-fx-background-image: url("../images/background.png");
+
 }
 
 .hangman-board > .board-grid {
@@ -24,6 +27,7 @@
 
 .hangman-board .label:disabled {
 	-fx-opacity: 1.0 ;
+
 }
 
 .lblWord{
@@ -35,6 +39,11 @@
 }
 
 .status {
-	-fx-font-size: 20pt ;
+	-fx-font: 20px "Indie Flower";
 	-fx-text-fill: navy ;
+	-fx-alignment: CENTER;
+
+}
+.tf {
+	-fx-opacity: 0.0 ;
 }
