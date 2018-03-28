@@ -45,7 +45,12 @@
 	</center>
 	
 	<bottom>
-		<VBox>
+		<VBox alignment = "CENTER">
+			<Label fx:id="lblWord">
+				<styleClass>
+					<String fx:value="lblWord"/>
+				</styleClass>
+			</Label>
 			<Label fx:id="statusLabel">
 				<styleClass>
 					<String fx:value="status"/>
@@ -61,6 +66,7 @@
 				</TextField>
 			</GridPane>
 		</VBox>
+
 	</bottom>
 
 </BorderPane>

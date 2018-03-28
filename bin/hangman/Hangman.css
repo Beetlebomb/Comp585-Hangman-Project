@@ -26,6 +26,9 @@
 	-fx-opacity: 1.0 ;
 }
 
+.lblWord{
+	-fx-font: 20px "Indie Flower";
+}
 .hangman-board > .board-grid > .label {
 	-fx-font-size: 128pt ;
 

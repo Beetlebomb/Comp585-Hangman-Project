@@ -65,7 +65,8 @@ public class GameController  {
 	private Label lblLtrs[] = new Label[NUMLTRS];
 	private char ltrs[] = new char [] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 										'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-
+	@FXML
+	private Label lblWord = new Label();
 
 	public void initialize() throws IOException {
 		System.out.println("in initialize");
@@ -203,6 +204,7 @@ public class GameController  {
 		toTextBox = sb.toString();
 		//System.out.println("Built String is: "+toTextBox); debug
 		textField.setText(toTextBox);
+		lblWord.setText(toTextBox);
 	}
 
 	/**
